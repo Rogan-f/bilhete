@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>checando</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #ffc0d9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .bilhete {
+      background: #87ceeb;
+      width: 320px;
+      min-height: 430px;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    h1 {
+      color: #1f4f66;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .pombo {
+      width: 160px;
+      margin: 15px 0 25px;
+    }
+
+    .botoes {
+      position: relative;
+      height: 100px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+      position: absolute;
+    }
+
+    #nao {
+      background: #ff64d6;
+      color: #1f4f66;
+      left: 55px;
+      top: 25px;
+    }
+
+    #nao:hover {
+      background: #45c2f7;
+      transform: scale(1.05);
+    }
+
+    #sim {
+      background: #000000;
+      color: white;
+      left: 175px;
+      top: 25px;
+    }
+
+    .mensagem {
+      display: none;
+      margin-top: 20px;
+      color: #1f4f66;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bilhete">
+    <h1>Sei que não respondi nada das coisas que você falou,
+        mas eu entendi tudo e reconheço que errei, só não quis 
+        me estender ou ser repetitivo. Só pra checar, vc ainda está brava?</h1>
+
+    <img 
+  class="pombo" 
+  src="pombo.png" 
+  alt="Pombo triste"
+>
+
+    <audio id="audio">
+      <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="botoes">
+      <button id="nao">Não</button>
+      <button id="sim">Sim</button>
+    </div>
+
+    <div class="mensagem" id="mensagem">
+      tocomsaudade🫵🏻💙
+    </div>
+  </div>
+
+  <script>
+    const botaoSim = document.getElementById("sim");
+    const botaoNao = document.getElementById("nao");
+    const mensagem = document.getElementById("mensagem");
+    const audio = document.getElementById("audio");
+
+    botaoSim.addEventListener("mouseover", fugir);
+    botaoSim.addEventListener("click", fugir);
+
+    function fugir() {
+    const larguraTela = window.innerWidth;
+    const alturaTela = window.innerHeight;
+
+    const larguraBotao = botaoSim.offsetWidth;
+    const alturaBotao = botaoSim.offsetHeight;
+
+    const limiteX = larguraTela - larguraBotao - 10;
+    const limiteY = alturaTela - alturaBotao - 10;
+
+    const novaPosicaoX = Math.floor(Math.random() * limiteX);
+    const novaPosicaoY = Math.floor(Math.random() * limiteY);
+
+    botaoSim.style.position = "fixed";
+    botaoSim.style.left = novaPosicaoX + "px";
+    botaoSim.style.top = novaPosicaoY + "px";
+    }
+
+    botaoNao.addEventListener("click", function() {
+      mensagem.style.display = "block";
+      botaoNao.innerText ="se tentou responder 'sim' me conta 🥺";
+
+      audio.currentTime = 0;
+      audio.play();
+    });
+  </script>
+
+</body>
+</html>
